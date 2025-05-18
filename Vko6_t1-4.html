@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>tehtavia1-4</title>
+
+</head>
+<body> 
+	<h3>1) objekti tunnus ja 3) lisäys</h3>
+
+	<div id="tunnus"></div>
+	
+<script>
+
+    var opiskelija = { 
+        "tunnus": "a1234567", 
+        "nimi": { 
+            "etunimi": "Pekka", 
+            "sukunimi": "Virtanen", 
+        }, 
+        "osoite": { 
+            "lahiosoite": "Virtakatu 11", 
+            "postinumero": "12345", 
+            "postitoimipaikka": "Virtala", 
+        }, 
+        "puhelimet": [ 
+            {"numero": "050-123456", "tyyppi": "työ"},  
+            {"numero":"050-7654321", "tyyppi": "henkilökohtainen"},  
+            {"numero":"050-1234321", "tyyppi": "salainen"} 
+        ], 
+    };
+        
+    function listaa() {
+        var teksti ="Tunnus: " + opiskelija.tunnus + 
+        "<br>Nimi: " + opiskelija.nimi.etunimi + " " + opiskelija.nimi.sukunimi + 
+        "<br>Osoite: " + opiskelija.osoite.lahiosoite + " "+ 
+            opiskelija.osoite.postinumero + " " + opiskelija.osoite.postitoimipaikka + 
+        "<br>Puhelimet: " + opiskelija.puhelimet[0].numero + " (" + opiskelija.puhelimet[0].tyyppi + ") " + 
+            opiskelija.puhelimet[1].numero + " (" + opiskelija.puhelimet[1].tyyppi + ") ";
+
+		document.getElementById("tunnus").innerHTML = "<p>" + teksti + "</p>" ;
+	}
+        listaa();
+        </script>
+
+    <h3>2) kurssi</h3>
+
+    <div id="kurssi"></div>
+
+    <script>
+
+    var kurssit = [  
+        {     
+        "nimi": "Orientaatio digitaalisiin palveluihin", 
+        "tunnus": "DIG1TA001", 
+        "laajuus": 5, 
+        "ajoitus": "1. lukukausi" 
+            },  
+            {     
+        "nimi": "Orientaatio ohjelmistotuotantoon", 
+        "tunnus": "SWD1TA001", 
+        "laajuus": 5, 
+        "ajoitus": "1. lukukausi" 
+            },  
+            {      
+        "nimi": "Orientaatio ICT ja liiketoiminta", 
+        "tunnus": "BIG1TA001", 
+        "laajuus": 5, 
+        "ajoitus": "1. lukukausi" 
+            },  
+            {      
+        "nimi": "Orientaatio ICT-infrastruktuuriin", 
+        "tunnus": "ICT1TA010", 
+        "laajuus": 5, 
+        "ajoitus": "1. lukukausi" 
+            },  
+            {     
+        "nimi": "Ruotsin kielioppi ja rakenteet", 
+        "tunnus": "SWE8TA062", 
+        "laajuus": 3, 
+        "ajoitus": "1. lukukausi" 
+            },  
+            {      
+        "nimi": "Työvälineet myynnin ja palvelun ympäristössä", 
+        "tunnus": "SAL1TA001", 
+        "laajuus": 5, 
+        "ajoitus": "1. lukukausi", 
+            }  
+        ];
+    
+    function listaakurssit() {
+        var teksti = "";
+        for (var i=0; i < kurssit.length; i++ ) {		
+			teksti = teksti + "<p>Tunnus: " + kurssit[i].tunnus + "<br>";
+			teksti = teksti + "Nimi: " + kurssit[i].nimi + "<br>";
+			teksti = teksti + "Laajuus: " + kurssit[i].laajuus + "<br>";
+			teksti = teksti + "Ajoitus: " + kurssit[i].ajoitus + "<br>";
+            }      
+        
+        document.getElementById("kurssi").innerHTML = "<p>" + teksti + "</p>";
+    }
+
+    listaakurssit();
+</script>
+
+    <h3>4) säätutka</h3>
+
+	<div id="saatutka"></div>
+	
+	 <script>
+        function saatiedote() {
+            fetch("http://api.openweathermap.org/data/2.5/weather?lang=fi&q=helsinki&units=metric&APPID=4794086aa14bfcc08d9301ca7fe0faf3")
+            .then( function (response) {
+                return response.json();
+            })
+            .then( function (responseJson) {
+                console.log(responseJson);
+                naytaSaat(responseJson);
+            })
+            .catch( function (error) {
+                
+                document.getElementById("saatutka").innerHTML = "Säätietoja ei saa haettua";
+            })
+        }
+
+        function naytaSaat(tiedote) {
+            var teksti = "";
+                teksti =  "<br>" + tiedote.name + "<br>" + tiedote.weather[0].description +
+                "<br>" + "lämpötila: " + tiedote.main.temp + " c" +
+                "<br>" + "Tuuli: " + tiedote.wind.speed + " m/s" +
+                "<br>" + "Pilvisyys: " + tiedote.clouds.all + "%";
+            
+            document.getElementById("saatutka").innerHTML = teksti;
+    
+        }
+
+        saatiedote();
+	</script>
+</body>
+</html>

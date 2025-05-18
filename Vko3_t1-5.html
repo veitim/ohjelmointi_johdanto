@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tehtävät1-5</title>
+
+
+ <style>
+	label {
+		display: block;
+		width: 8em;
+		float: left; 
+	}
+</style>
+
+</head>
+<body> 
+	<h3>1) Nopat</h3>
+
+	<div id="nopat"></div>
+	
+	<script>
+
+	function arvo() {
+
+		var noppa1 = Math.round((Math.random() * 5) + 1);
+		var noppa2 = Math.round((Math.random() * 5) + 1);	
+
+    	var lkm = 1;
+
+		while (noppa1 != noppa2) {
+    	noppa1 = Math.round((Math.random() * 5) + 1);
+		noppa2 = Math.round((Math.random() * 5) + 1);
+    	lkm++;
+			
+	}
+    	document.getElementById("nopat").innerHTML = "Arvontoja oli " + lkm + " kappaletta";
+	}
+		arvo();
+	</script>
+
+
+	<h3>2) Arpoja</h3>
+
+	<div id="arpoja"></div>
+
+	<script>
+
+		var teksti = "";
+		
+		for (var i = 1; i <= 100; i++)  {
+			var numero = Math.round((Math.random() * 9998) + 1); 
+			teksti = teksti + numero + "&nbsp"
+		if (i % 10 ==0)
+			teksti = teksti + "<br>"
+		}
+			
+    	document.getElementById("arpoja").innerHTML = "<p>" + teksti + "</p>";
+
+	</script>
+
+<h3>3) Painonpudotus</h3>
+
+	<form>
+        <p>
+		    <label>Lähtöpaino:</label> 
+		    <input type="text" id="paino" size="5"> 
+			<input type="button" value="Näytä tavoitepainot" onclick="naytatavoitepainot()">
+	</form>
+
+	<div id="painonpudotus"></div>
+
+	<script>
+	function naytatavoitepainot() {
+
+		var paino = document.getElementById("paino").value;
+		var painonlasku = paino * 0.1 / 7;
+		var teksti2 = "";
+
+		for (var i = 1; i <= 7; i++) {
+			paino = paino - painonlasku
+			teksti2 = teksti2 + i + ".  viikon jälkeen&nbsp" + paino.toFixed(1) + "<br>";
+		}
+	
+		document.getElementById("painonpudotus").innerHTML = "<p>" + teksti2 + "</p>";
+	}
+	</script>
+
+<h3>4) D'Hondt</h3>
+
+	<form>
+		<p>
+			<label>Kokonaismäärä:</label> 
+			<input type="text" id="kmaara" size="5"> 
+		</p>
+		<p>
+			<label>Ehdokkaiden määrä:</label> 
+			<input type="text" id="emaara" size="5"> 
+		</p>
+			<input type="button" value="Näytä vertausluvut" onclick="naytavertaus()">
+	</form>
+
+	<div id="dhondt"></div>
+
+	<script>
+	function naytavertaus() {
+		
+		var kmaara = document.getElementById("kmaara").value;
+		var emaara = document.getElementById("emaara").value;
+
+		var teksti3 = "";
+		
+		for (var i = 1; i <= emaara; i++) {
+			var vertausluku = kmaara / i;
+			teksti3 = teksti3 + i + ".&nbsp" + vertausluku.toFixed(0) + "<br>";
+		}
+	
+		document.getElementById("dhondt").innerHTML = "<p>" + teksti3 + "</p>";
+		}
+	</script>
+
+<h3>5) Peliautomaatti</h3>
+
+	<form>
+		<p>
+			<label>Kierrokset:</label> 
+			<input type="text" id="kierrokset" size="5"> 
+			<input type="button" value="Pelaa" onclick="pelaa()">
+	</form>
+
+	<div id=peliautomaatti></div>
+
+	<script>
+		function pelaa() {
+			maara = 1;
+			maara2 = 1;
+			var voitot = maara + maara2;
+			var kierrokset = document.getElementById("kierrokset").value;
+
+			var pelinoppa = Math.round((Math.random() * 5) +1);
+			var panos = kierrokset * 1;
+			var teksti4 = "";
+
+			for (var i = 1; i <= kierrokset; i++)  {
+				pelinoppa = Math.round((Math.random() * 5) +1);
+
+			if (pelinoppa ==1 || pelinoppa ==3 || pelinoppa ==5) {
+			"";
+			}
+			else if (pelinoppa ==2 || pelinoppa ==4) {
+			maara = maara + 1 * 1.25
+			}
+			else {
+			maara2 = maara2 + 1 * 1.50
+			}
+	
+			}
+			document.getElementById("peliautomaatti").innerHTML = "<p>Panokset oli " + panos + "<br>" 
+			+ "Maksetut voitot oli " + (maara + maara2).toFixed(2) + "<br>Tulos oli " + (panos - (maara + maara2)) ;
+		}
+	</script>
+
+</body>
+</html>

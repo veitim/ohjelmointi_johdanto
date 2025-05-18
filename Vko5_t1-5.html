@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>tehtavat 1-5</title>
+
+
+ <style>
+	label {
+		display: block;
+		width: 10em;
+		float: left; 
+	}
+</style>
+
+</head>
+<body> 
+	<h3>1) Sademäärä</h3>
+
+	<div id="sademaara"></div>
+	
+	<script>
+
+	function nayta() {
+
+        var sademaarat = [47.0,36.6,34.7,37.0,41.9,47.5,61.7,74.8,65.4,69.7,66.1,54.6]
+        var summa = 0;
+            for (var i = 0; i < sademaarat.length; i++) {
+                summa = summa + sademaarat[i]
+            }
+        
+		document.getElementById("sademaara").innerHTML = "Helsingin sademäärä on " + summa.toFixed(1) +
+            " mm";
+	}
+    nayta();
+	</script>
+
+    <h3>2) Lämpötilat</h3>
+
+    <div id="lampotilat"></div>
+        
+    <script>
+
+    function lampotilojenkeskiarvo() {
+
+        var lampotilat = [-3.3,-4.7,-1.3,3.9,10.2,14.6,17.8,16.3,11.5,6.6,1.6,-2.0]; 
+            
+        var teksti = "";
+        var summa = 0;
+            for (var i = 0; i < lampotilat.length; i++) {
+                teksti = teksti + (i+1) + ". " + lampotilat[i] + "<br>";
+                summa = summa + lampotilat[i];
+            }
+
+        var keskiarvo = summa / lampotilat.length;
+
+        document.getElementById("lampotilat").innerHTML = teksti + "<p>Lämpötilojen keskiarvo on " +
+            keskiarvo.toFixed(1);
+            
+        }
+    lampotilojenkeskiarvo();
+    </script>
+
+    <h3>3) Veriryhmät</h3>
+
+    <form>
+        <p>
+            <label>Haettava veriryhmä:</label> 
+            <input type="text" id="veriryhma" size="5"> 
+            <input type="button" value="Kerro" onclick="naytaveriryhma()">
+    </form>
+
+    <div id="veriryhmia"></div>
+        
+    <script>
+    
+    function naytaveriryhma() {
+
+    var veriryhmat = ["A+", "O-", "AB+", "O+", "AB+", "AB+", "O-", "AB+", "O+", "AB+"];
+
+    var veriryhma = document.getElementById("veriryhma").value;
+    var maara = 0;     
+        for (var i = 0; i < veriryhmat.length; i++) {
+            if (veriryhmat[i] == veriryhma) {
+                maara = maara + 1;
+            }
+        }
+
+    document.getElementById("veriryhmia").innerHTML = "<p>Veriryhmää " +  veriryhma + " on " + maara + " Kappaletta</p>" ;
+        
+    }
+    </script>
+
+    <h3>4) Kuvat</h3>
+
+    <div id="kuvia"></div>
+        
+    <script>
+
+    function naytakuva() {
+
+    var kuvat = [ 
+    "https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/assi.jpg",  
+    "https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/myynti.jpg",  
+    "https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/tiko.jpg",  
+    "https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/yleinen1.jpg",  
+    "https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/yleinen2.jpg" 
+    ];
+
+    var teksti = "";     
+        for (var i = 0; i < kuvat.length; i++) {
+            teksti = teksti + "<img src='" + kuvat[i] +  
+            "' alt='kuvia' height='100' width='100'> " 
+        }
+
+    document.getElementById("kuvia").innerHTML = teksti;
+    }
+    naytakuva();
+    </script>
+
+    <h3>5) Mökkeily</h3>
+
+    <form>
+		<label>Nimi:</label> 
+		<input type="text" id="nimi" size="20"> 
+		<input type="button" value="Lisää" onclick="lisaa()">
+        <input type="button" value="Arvo" onclick="arvo()">
+	</form>
+
+    <div id="mokkireissu"></div>
+    <div id="arvonta"></div>
+
+    <script>
+
+    var nimet = [];
+
+    function lisaa() {
+
+        var nimi = document.getElementById("nimi").value;
+
+        var teksti = "";
+        var paikka = nimet.length;
+        nimet[paikka] = document.getElementById("nimi").value;
+        console.log(nimet);
+
+        for (var i =0; i < nimet.length; i++) {
+            teksti = teksti + nimet[i] + "<br>";
+        }
+
+        document.getElementById("nimi").value = "";
+
+        document.getElementById("mokkireissu").innerHTML = "<br> Annetut nimet: " + nimet;
+    }
+
+    function arvo() {
+
+        var arvonta = Math.floor(Math.random() * nimet.length);
+        var voittaja = nimet[arvonta]
+ 
+        document.getElementById("arvonta").innerHTML = "<br>Voittaja on " + voittaja + "<br>";
+       
+    }
+    </script>
+
+
+
+</body>
+</html>

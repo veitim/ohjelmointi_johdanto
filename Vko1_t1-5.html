@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tehtävä1-5</title>
+
+</head>
+<body>
+    <h3>1) Päiväsakko laskuri</h3>
+
+
+<style>
+	label {
+		display: block;
+		width: 10em;
+		float: left; 
+	}
+</style>
+
+
+<form>  
+    <label>Nettotulot: </label>  
+    <input type="text" id="nettotulot" size="5">  
+    <input type="button" value="Laske päiväsakko" onclick="laske()">  
+</form>
+
+<div id="vastaus"></div>
+    
+    <script>
+    
+
+        function laske() {
+
+        var nettotulot = document.getElementById("nettotulot").value;
+
+        var sakko = (nettotulot - 255)/60;
+
+        document.getElementById("vastaus").innerHTML = "<p>Sakko on  " + sakko.toFixed(2) + " euroa </p>";
+    
+        }
+    </script>
+</body>
+
+<br><br><br><br>
+<h3>2) Kanava paketti</h3>
+
+<form>  
+    <label>Paketin hinta: </label>
+    <input type="text" id="PH" size="5"> €
+<br> <label>Määräaika: </label>
+    <input type="text" id="Ma" size="5">  /kk
+<br> <input type="button" value="Laske kokonaishinta" onclick="laske2()">  
+</form>
+
+
+<div id="vastaus2"></div>
+
+<script>
+    
+
+    function laske2() {
+
+    var PH = document.getElementById("PH").value;
+    var Ma = document.getElementById("Ma").value;
+
+
+    var kokonaishinta = PH * Ma;
+
+    document.getElementById("vastaus2").innerHTML = "<p>Kokonaishinta on " + kokonaishinta.toFixed(2) + " euroa </p>";
+
+    }
+</script>
+
+<br><br><br><br>
+<h3>3) Vuokra</h3>
+
+<form>  
+    <label>Vuokra: </label>
+    <input type="text" id="vuokra" size="5"> €
+<br> <label>Osallistujat: </label>
+    <input type="text" id="osallistujat" size="5">  /hlöä
+<br> <input type="button" value="Laske vuokra" onclick="laske3()">  
+</form>
+
+
+<div id="vastaus3"></div>
+
+<script>
+    
+
+    function laske3() {
+
+    var vuokra = document.getElementById("vuokra").value;
+    var osallistujat = document.getElementById("osallistujat").value;
+
+
+    var osuus = vuokra / osallistujat;
+
+    document.getElementById("vastaus3").innerHTML = "<p>Vuokra per henkilö on " + osuus.toFixed(2) + " euroa </p>";
+
+    }
+</script>
+
+
+<br><br><br><br>
+<h3>4) Kimppakyyti</h3>
+
+<form>  
+    <label>Kilometrit: </label>
+    <input type="text" id="KM" size="5">
+<br> <label>Kulutus: </label>
+    <input type="text" id="kulutus" size="5">
+<br> <label>Litrahinta: </label>
+    <input type="text" id="lh" size="5">
+<br> <label>Määrä: </label>
+    <input type="text" id="maara" size="5">
+<br> <input type="button" value="Laske" onclick="laske4()">  
+</form>
+
+
+<div id="vastaus4"></div>
+
+<script>
+    
+
+    function laske4() {
+
+    var KM = document.getElementById("KM").value;
+    var kulutus = document.getElementById("kulutus").value;
+    var lh = document.getElementById("lh").value;
+    var maara = document.getElementById("maara").value;
+
+    var osuus3 = kulutus / 100 * lh * KM / maara;
+
+    document.getElementById("vastaus4").innerHTML = "<p>Polttoainetta per henkilö on " + osuus3.toFixed(2) + " euroa </p>";
+
+    }
+</script>
+
+<br><br><br><br>
+<h3>5) Palkkalaskuri</h3>
+
+<form>  
+    <label>Bruttopalkka: </label>
+    <input type="text" id="bp" size="5"> €
+<br> <label>Veroprosentti: </label>
+    <input type="text" id="vp" size="5">  %
+<br> <input type="button" value="Laske palkka" onclick="laske5()">  
+</form>
+
+
+<div id="vastaus5"></div>
+
+<script>
+    
+
+    function laske5() {
+
+    var bp = document.getElementById("bp").value;
+    var vp = document.getElementById("vp").value;
+    var vero = bp * vp / 100;
+    var tyel = bp * 0.0675;
+    var tvm = bp * 0.015;
+    var käteen = bp - vero - tvm - tyel;
+
+
+    document.getElementById("vastaus5").innerHTML = "<p>Veron osuus " + vero.toFixed(2) + 
+    "<br>Työeläkevakuutusmaksun osuus " + tyel.toFixed(2) +"<br>Työttömyysvakuutuksen osuus " + tvm.toFixed(2) +
+    "<br>Käteen jää " + käteen.toFixed(2) + "</p>" ;
+
+    }
+</script>
