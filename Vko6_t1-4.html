@@ -109,7 +109,7 @@
 	
 	 <script>
         function saatiedote() {
-            fetch("http://api.openweathermap.org/data/2.5/weather?lang=fi&q=helsinki&units=metric&APPID=4794086aa14bfcc08d9301ca7fe0faf3")
+            fetch("http://api.openweathermap.org/data/2.5/weather?lang=fi&q=helsinki&units=metric&APPID={APIKEY}")
             .then( function (response) {
                 return response.json();
             })
